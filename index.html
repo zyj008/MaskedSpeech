@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html>
+
+<article>
+  <header>
+	<h1>Prosody Modelling with Pre-trained Cross-utterance Representations for Improved Speech Synthesis</h1>
+  </header>
+</article>
+
+<p><b>Authors:</b> Ya-Jie Zhang, Chao Zhang, <i>Member IEEE</i>, Wei Song, Zhengchen Zhang, Youzheng Wu, Xiaodong He, <i>Fellow IEEE</i> </p>
+
+<div><b>Abstract:</b> When humans speak multiple utterances in a continuous manner, the prosodic features generated in each utterance are related to those in its neighbouring utterances. Such cross-utterance (CU) dependencies are often ignored by the current neural text-to-speech (TTS) systems, which reduces the naturalness and expressiveness of the synthesized speeches. In this paper, we propose to improve the prosody modelling ability of neural TTS systems using pre-trained CU acoustic and text representations. Such CU acoustic representations are derived using the Wav2Vec 2.0 model (W2V2) from the synthesized audios of the past utterances, while the CU text representations are extracted using the Bidirectional Encoder Representation from Transformers (BERT) model from the scripts of the future utterances. Experimental results on a Mandarin audiobook and an English audiobook showed the naturalness and expressiveness of the synthesized audios were significantly improved by incorporating such pre-trained W2V2 and BERT CU representations into the Fastspeech2 TTS framework.
+</div>
+
+<head>
+<meta charset="UTF-8">
+<title>Speech Demo</title>
+</head>
+
+<body>
+  
+<h3>1. English demos</h3></a>
+   <p class="sample">
+    1.The time may come. The color rushed into her cheeks as she spoke.
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>Proposed model</td>    
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="CUdemos/CA-MP2-09-147to149_fastspeech2.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="CUdemos/CA-MP2-09-147to149_proposed.wav" controls=""></audio></td>
+    </tr>
+    </table>
+    </blockquote>
+
+    2. On the tragic side were the miss bertrams, henry crawford, and mister yates; on the comic, tom bertram, not quite alone, because it was evident that mary crawford's wishes, though politely kept back, inclined the same way
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>Proposed model</td>    
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="CUdemos/CA-MP1-14-007to007_3_fastspeech2.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="CUdemos/CA-MP1-14-007to007_3_proposed.wav" controls=""></audio></td>
+    </tr>
+    </table>
+    </blockquote>	
+	 
+    3. The breakfast consisted of a certain number of dishes, the contents of which were furnished by the sea alone; and I was ignorant of the nature and mode of preparation of some of them.
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>Proposed model</td>    
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="CUdemos/116to117_fastspeech2.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="CUdemos/116to117_proposed.wav" controls=""></audio></td>
+    </tr>
+    </table>
+    </blockquote>
+    
+    4."Was it unintentionally that the Abraham Lincoln pursued me all over the seas? Was it unintentionally that you took passage in this frigate?"
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>Proposed model</td>    
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="CUdemos/022to023_fastspeech2.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="CUdemos/022to023_proposed.wav" controls=""></audio></td>
+    </tr>
+    </table>
+    </blockquote>
+
+
+  </p>   
+<h3>1. Mandarin demos</h3></a>
+   <p class="sample">
+   	<div>1. “你来晚了，会议已经开始很久了。”戴金冠穿红袍的人说，“我是格里高利教皇。” </div>
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>Proposed model</td>    
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="CUdemos/09_fastspeech2.wav" controls=""></audio></td>
+	<td rowspan=2><audio src="CUdemos/09_proposed.wav" controls=""></audio></td>
+    </tr>
+    </table>	
+    </blockquote>   
+
+      <div>2.  这的的确确是即将进入淬体第四重的征兆。</div>
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>Proposed model</td>    
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="CUdemos/guojing_100570_fastspeech2.wav" controls=""></audio></td>
+   <td rowspan=2><audio src="CUdemos/guojing_100570_proposed.wav" controls=""></audio></td>
+    </tr>
+    </table>   
+    </blockquote>   
+
+      <div>3. 因为他发现，自己手臂的皮肤，居然变得坚硬了许多</div>
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>Proposed model</td>    
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="CUdemos/guojing_100558_fastspeech2.wav" controls=""></audio></td>
+   <td rowspan=2><audio src="CUdemos/guojing_100558_proposed.wav" controls=""></audio></td>
+    </tr>
+    </table>   
+    </blockquote>   
+
+      <div>4. 马每走一步，车轮每转一周，都使我们更加接近了冒险的极峰。 </div>
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>Proposed model</td>    
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="CUdemos/34_fastspeech2.wav" controls=""></audio></td>
+   <td rowspan=2><audio src="CUdemos/34_proposed.wav" controls=""></audio></td>
+    </tr>
+    </table>   
+    </blockquote>   
+
+
+	
+  </p>    
+  
+ </body>
+</html>
