@@ -10,7 +10,7 @@
 
 <p><b>Authors:</b> Ya-Jie Zhang, Wei Song, Yanghao Yue, Zhengchen Zhang, Youzheng Wu, Xiaodong He </p>
 
-<div><b>Abstract:</b> When humans speak multiple utterances in a continuous manner, the prosodic features generated in each utterance are related to those in its neighbouring utterances. Such cross-utterance (CU) dependencies are often ignored by the current neural text-to-speech (TTS) systems, which reduces the naturalness and expressiveness of the synthesized speeches. In this paper, we propose to improve the prosody modelling ability of neural TTS systems using pre-trained CU acoustic and text representations. Such CU acoustic representations are derived using the Wav2Vec 2.0 model (W2V2) from the synthesized audios of the past utterances, while the CU text representations are extracted using the Bidirectional Encoder Representation from Transformers (BERT) model from the scripts of the future utterances. Experimental results on a Mandarin audiobook and an English audiobook showed the naturalness and expressiveness of the synthesized audios were significantly improved by incorporating such pre-trained W2V2 and BERT CU representations into the Fastspeech2 TTS framework.
+<div><b>Abstract:</b> Humans often speak in a continuous manner which leads to coherent and consistent prosody properties across neighboring utterances. However, most state-of-the-art speech synthesis systems only consider the information within each sentence and ignore the contextual semantic and acoustic features. This makes it inadequate to generate high-quality paragraph-level speech which requires high expressiveness and naturalness. To synthesize natural and expressive speech for a paragraph, a context-aware speech synthesis system named MaskedSpeech is proposed in this paper, which considers both contextual semantic and acoustic features. Inspired by the masking strategy in the speech editing research, the acoustic features of the current sentence are masked out and concatenated with those of contextual speech, and further used as additional model input. The phoneme encoder takes the concatenated phoneme sequence from neighboring sentences as input and learns fine-grained semantic information from contextual text. Furthermore, cross-utterance coarse-grained semantic features are employed to improve the prosody generation. The model is trained to reconstruct the masked acoustic features with the augmentation of both the contextual semantic and acoustic features. Experimental results demonstrate that the proposed MaskedSpeech outperformed the baseline system significantly in terms of naturalness and expressiveness.
 </div>
 
 <head>
@@ -23,60 +23,106 @@
 
 <h3>1. Mandarin demos</h3></a>
    <p class="sample">
-   	<div>1. “你来晚了，会议已经开始很久了。”戴金冠穿红袍的人说，“我是格里高利教皇。” </div>
+   	<div>1. 青檀轻点了点头，旋即道。**不知道林动哥下一场的对手会是谁？**如果赢了这一场，就能够进入前五了… </div>
     <blockquote>
     <table>
     <tr>
-    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>Proposed model</td>    
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>PBE-based model</td>  <td align=center width=300>MaskedSpeech</td>  
     </tr>
     <tr>
-    <td rowspan=2><audio src="CUdemos/09_fastspeech2.wav" controls=""></audio></td>
-	<td rowspan=2><audio src="CUdemos/09_proposed.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="demos/fastspeech2/103107.wav" controls=""></audio></td>
+	<td rowspan=2><audio src="demos/pse/103107.wav" controls=""></audio></td>
+  <td rowspan=2><audio src="demos/proposed/103107.wav" controls=""></audio></td>  
     </tr>
     </table>	
     </blockquote>   
 
-      <div>2.  这的的确确是即将进入淬体第四重的征兆。</div>
+      <div>2. 不过既然你们痴心妄想的打算在炎城立足。**那我或许便是得教教你们，炎城的一些规矩！**鬼阎阴笑道。所谓规矩，不过是拳头大。</div>
     <blockquote>
     <table>
     <tr>
     <td align=center width=300>Fastspeech2 model</td><td align=center width=300>Proposed model</td>    
     </tr>
     <tr>
-    <td rowspan=2><audio src="CUdemos/guojing_100570_fastspeech2.wav" controls=""></audio></td>
-   <td rowspan=2><audio src="CUdemos/guojing_100570_proposed.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="demos/fastspeech2/123865.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="demos/pse/123865.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="demos/proposed/123865.wav" controls=""></audio></td>  
+
     </tr>
     </table>   
     </blockquote>   
 
-      <div>3. 因为他发现，自己手臂的皮肤，居然变得坚硬了许多</div>
+      <div>3. 盯着那地上狼狈的岳山。这就败了？**这位号称炎城顶尖强者的血狼帮帮主岳山，**便是如此干脆利落的败在了林动手中？</div>
     <blockquote>
     <table>
     <tr>
     <td align=center width=300>Fastspeech2 model</td><td align=center width=300>Proposed model</td>    
     </tr>
     <tr>
-    <td rowspan=2><audio src="CUdemos/guojing_100558_fastspeech2.wav" controls=""></audio></td>
-   <td rowspan=2><audio src="CUdemos/guojing_100558_proposed.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="demos/fastspeech2/132091.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="demos/pse/132091.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="demos/proposed/132091.wav" controls=""></audio></td>  
     </tr>
     </table>   
     </blockquote>   
 
-      <div>4. 马每走一步，车轮每转一周，都使我们更加接近了冒险的极峰。 </div>
+      <div>4. 若是不走的话，下场必然只有死路一条。**走，你们落在他们手中，只会比死更惨。**见到萱素迟疑，夏万金再度怒喝道。 </div>
     <blockquote>
     <table>
     <tr>
     <td align=center width=300>Fastspeech2 model</td><td align=center width=300>Proposed model</td>    
     </tr>
     <tr>
-    <td rowspan=2><audio src="CUdemos/34_fastspeech2.wav" controls=""></audio></td>
-   <td rowspan=2><audio src="CUdemos/34_proposed.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="demos/fastspeech2/126731.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="demos/pse/126731.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="demos/proposed/126731.wav" controls=""></audio></td>  
+    </tr>
+    </table>   
+    </blockquote>   
+
+      <div>5. 林动咬着牙，忍耐着那因为透支而酸软的身体，**挣扎着起身，然后衣服也不脱，一头便是栽进了石池之中。**随着林动落进石池，池中顿时涌出淡红色的气泡， </div>
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>Proposed model</td>    
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="demos/fastspeech2/102245.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="demos/pse/102245.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="demos/proposed/102245.wav" controls=""></audio></td>  
+    </tr>
+    </table>   
+    </blockquote>   
+
+      <div>6. 他知道这神秘石符来历必然不凡。**所拥有的能力，应当也不止他所发现的这些，**只不过寻常时候，任由他如何探测， </div>
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>Proposed model</td>    
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="demos/fastspeech2/133240.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="demos/pse/133240.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="demos/proposed/133240.wav" controls=""></audio></td>  
+    </tr>
+    </table>   
+    </blockquote>   
+
+      <div>7. 噗通！**林动咬着牙，忍耐着那因为透支而酸软的身体，**挣扎着起身，然后衣服也不脱，一头便是栽进了石池之中。 </div>
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>Proposed model</td>    
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="demos/fastspeech2/102244.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="demos/pse/102244.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="demos/proposed/102244.wav" controls=""></audio></td>  
     </tr>
     </table>   
     </blockquote>   
 
 
-	
   </p>    
   
  </body>
